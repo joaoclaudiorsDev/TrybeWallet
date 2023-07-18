@@ -1,10 +1,6 @@
 export type UserData = {
-  name: string,
-  email: string,
-  cpf: string,
-  address: string,
-  city: string,
-  uf: string,
+  email: string;
+  senha: string;
 };
 
 export type WalletData = {

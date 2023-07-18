@@ -1,5 +1,12 @@
+import { Fragment } from 'react';
+import Form from '../components/form';
+
 function Login() {
-  return <div>Login</div>;
+  return (
+    <div>
+      <Form />
+    </div>
+  );
 }
 
 export default Login;

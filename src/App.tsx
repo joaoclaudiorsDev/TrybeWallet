@@ -8,7 +8,7 @@ function App() {
     <main>
       <Routes>
         <Route path="/" element={ <Login /> } />
-        <Route path="/" element={ <Wallet /> } />
+        <Route path="/carteira" element={ <Wallet /> } />
       </Routes>
     </main>
   );
