@@ -8,3 +8,9 @@ export type WalletData = {
   role: string,
   description:string,
 };
+
+export type AppState = {
+  user: {
+    email: string;
+  };
+};

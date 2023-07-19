@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
+import { AppState } from '../types';
 
 function Header() {
-  const email = useSelector((state) => state.user.email);
+  const email = useSelector((state: AppState) => state.user.email);
 
   return (
     <header>
