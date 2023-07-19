@@ -40,7 +40,7 @@ function Form() {
       <input
         data-testid="email-input"
         placeholder="E-mail"
-        value={ form.email }
+        value={ email }
         name="email"
         required
         onChange={ handleChange }
