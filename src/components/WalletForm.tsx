@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { fetchCurrencies } from '../redux/actions/requisitionApi';
 import { RootState } from '../types';
 
 function WalletForm() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<RootState, unknown, AnyAction>>();
   const currencies = useSelector((state: RootState) => state.wallet.currencies);
 
   useEffect(() => {
