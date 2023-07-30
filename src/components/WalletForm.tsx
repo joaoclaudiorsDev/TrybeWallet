@@ -9,7 +9,6 @@ import { ExpenseData, RootState } from '../types';
 function WalletForm() {
   const dispatch = useDispatch<ThunkDispatch<RootState, unknown, AnyAction>>();
   const currencies = useSelector((state: RootState) => state.wallet.currencies);
-  const exchangeRate = useSelector((state: RootState) => state.wallet.exchangeRate);
 
   useEffect(() => {
     dispatch(fetchCurrencies());
@@ -17,16 +16,21 @@ function WalletForm() {
 
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
+  const [method, setMethod] = useState('Dinheiro');
+  const [tag, setTag] = useState('Alimentação');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const selectedCurrency = 'BRL';
-    const rate = exchangeRate[selectedCurrency]?.ask || 1;
+    const selectedCurrency = (document
+      .querySelector('[data-testid="currency-input"]') as HTMLInputElement)
+      ?.value || 'BRL';
 
     const newExpense: ExpenseData = {
-      id: Date.now(),
-      value: parseFloat(value) * rate,
+      value: parseFloat(value).toString(),
+      currency: selectedCurrency,
+      method,
+      tag,
       description,
     };
 
@@ -60,12 +64,20 @@ function WalletForm() {
           </option>
         ))}
       </select>
-      <select data-testid="method-input">
+      <select
+        data-testid="method-input"
+        value={ method }
+        onChange={ (e) => setMethod(e.target.value) }
+      >
         <option value="Dinheiro">Dinheiro</option>
         <option value="Cartão de crédito">Cartão de crédito</option>
         <option value="Cartão de débito">Cartão de débito</option>
       </select>
-      <select data-testid="tag-input">
+      <select
+        data-testid="tag-input"
+        value={ tag }
+        onChange={ (e) => setTag(e.target.value) }
+      >
         <option value="Alimentação">Alimentação</option>
         <option value="Lazer">Lazer</option>
         <option value="Trabalho">Trabalho</option>

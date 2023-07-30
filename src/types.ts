@@ -6,8 +6,12 @@ export type UserData = {
 };
 
 export type RootState = {
+  user: {
+    email: string;
+  };
+  expenses: ExpenseData[];
   wallet: {
-    exchangeRate: any;
+    exchangeRate: ExchangeRate;
     currencies: string[];
   };
 };
@@ -15,12 +19,6 @@ export type RootState = {
 export type StateType = {
   user: UserData;
   wallet: RootState;
-};
-
-export type AppState = {
-  user: {
-    email: string;
-  };
 };
 
 export const requestStarted = () => ({
@@ -33,11 +31,24 @@ export const requestError = (error: string) => ({
 });
 
 export type ExpenseData = {
-  id: number;
-  value: number;
+  id?: number;
+  value: string;
+  currency: string;
+  method: string;
+  tag: string;
   description: string;
 };
 
+export type AppState = {
+  user: {
+    email: string;
+  };
+  wallet: {
+    exchangeRate: ExchangeRate;
+    currencies: string[];
+    expenses: ExpenseData[];
+  };
+};
 export type ExchangeRate = {
   [currency: string]: {
     code: string;

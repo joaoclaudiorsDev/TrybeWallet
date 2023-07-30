@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
-import { ADD_EXPENSE } from '../actions/actionTypes';
 import { ExpenseData } from '../../types';
+import { ADD_EXPENSE } from '../actions/actionTypes';
 
 const INITIAL_STATE: ExpenseData[] = [];
 

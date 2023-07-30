@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   senha: '',
 };
 
-const userData = (
+const userReducer = (
   state = INITIAL_STATE,
   action: AnyAction,
 ) => {
@@ -15,7 +15,7 @@ const userData = (
       return {
         ...state,
         email: action.payload.email,
-        senha: action.payload.seha,
+        senha: action.payload.senha,
 
       };
     }
@@ -23,4 +23,4 @@ const userData = (
   }
 };
 
-export default userData;
+export default userReducer;
