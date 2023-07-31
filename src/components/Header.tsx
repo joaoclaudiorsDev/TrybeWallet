@@ -1,5 +1,6 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { AppState, ExpenseData, ExchangeRate } from '../types';
+import { AppState, ExpenseData } from '../types';
 
 function Header() {
   const expenses = useSelector((state: AppState) => state.wallet.expenses);
@@ -10,8 +11,9 @@ function Header() {
   const calculateTotalExpensesInBRL = () => {
     return expenses.reduce((total: number, expense: ExpenseData) => {
       const rate = exchangeRate[expense.currency]?.ask || 1;
+      const expenseValue = parseFloat(expense.value);
       console.log('currency:', expense.currency, 'rate:', rate, 'value:', expense.value);
-      return total + expense.value * rate;
+      return total + expenseValue * rate;
     }, 0);
   };
 

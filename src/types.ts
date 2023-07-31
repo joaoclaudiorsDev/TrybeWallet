@@ -1,4 +1,4 @@
-import { REQUEST_STARTED, REQUEST_ERROR, ADD_EXPENSE } from './redux/actions/actionTypes';
+import { REQUEST_STARTED, REQUEST_ERROR } from './redux/actions/actionTypes';
 
 export type UserData = {
   email: string;
@@ -9,6 +9,7 @@ export type RootState = {
   user: {
     email: string;
   };
+
   expenses: ExpenseData[];
   wallet: {
     exchangeRate: ExchangeRate;
@@ -49,6 +50,7 @@ export type AppState = {
     expenses: ExpenseData[];
   };
 };
+
 export type ExchangeRate = {
   [currency: string]: {
     code: string;
