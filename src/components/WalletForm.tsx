@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { addExpense } from '../redux/actions';
@@ -23,8 +23,8 @@ function WalletForm() {
     e.preventDefault();
 
     const selectedCurrency = (document
-      .querySelector('[data-testid="currency-input"]') as HTMLInputElement)
-      ?.value || 'BRL';
+      .querySelector('[data-testid="currency-input"]') as HTMLSelectElement)
+      .value || 'BRL';
 
     const newExpense: ExpenseData = {
       value: parseFloat(value).toString(),
@@ -32,11 +32,14 @@ function WalletForm() {
       method,
       tag,
       description,
+      exchangeRates: {},
     };
 
     dispatch(addExpense(newExpense));
     setValue('');
     setDescription('');
+
+    dispatch(fetchCurrencies());
   };
 
   return (

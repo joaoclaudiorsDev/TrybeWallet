@@ -10,11 +10,13 @@ const INITIAL_STATE = {
 
 const handleAddExpense = (state: any, action: AnyAction) => {
   const newExpense: ExpenseData = {
+    id: state.expenses.length,
     value: action.payload.value,
     currency: action.payload.currency,
     method: action.payload.method,
     tag: action.payload.tag,
     description: action.payload.description,
+    exchangeRates: { ...state.exchangeRate },
   };
   return { ...state, expenses: [...state.expenses, newExpense] };
 };

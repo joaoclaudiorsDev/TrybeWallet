@@ -34,10 +34,11 @@ export const requestError = (error: string) => ({
 export type ExpenseData = {
   id?: number;
   value: string;
+  description: string;
   currency: string;
   method: string;
   tag: string;
-  description: string;
+  exchangeRates: ExchangeRate;
 };
 
 export type AppState = {
