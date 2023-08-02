@@ -55,6 +55,7 @@ function Form() {
         onChange={ handleChange }
       />
       <button
+        data-testid="submit-button"
         type="submit"
         disabled={ !isFormValid }
       >

@@ -10,8 +10,8 @@ const store = createStore(
   ),
 );
 
-if ((window as any).Cypress) {
-  (window as any).store = store;
+if (window.Cypress) {
+  window.store = store;
 }
 
 export default store;
