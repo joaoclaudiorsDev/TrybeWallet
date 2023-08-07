@@ -62,3 +62,29 @@ export type ExchangeRate = {
     create_date: string;
   };
 };
+
+export type CurrencyData = {
+  code: string;
+  codein: string;
+  name: string;
+  high: string;
+  low: string;
+  varBid: string;
+  pctChange: string;
+  bid: string;
+  ask: string;
+  timestamp: string;
+  create_date: string;
+};
+
+export type ExpenseData2 = {
+  id: number;
+  description: string;
+  tag: string;
+  method: string;
+  value: string;
+  currency: string;
+  exchangeRates: {
+    [key: string]: string;
+  };
+};

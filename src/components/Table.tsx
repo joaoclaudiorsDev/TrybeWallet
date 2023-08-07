@@ -1,8 +1,13 @@
 import React from 'react';
 import mockData from '../tests/helpers/mockData';
-import { ExpenseData } from '../types';
+import { CurrencyData, ExpenseData2 } from '../types';
 
-function getCurrencyFullName(currencyCode) {
+interface TableProps {
+  expenses: ExpenseData2[];
+}
+type CurrencyCode = keyof typeof mockData;
+
+function getCurrencyFullName(currencyCode: CurrencyCode) {
   const currency = mockData[currencyCode];
   if (currency) {
     return `${currency.name} (${currency.code}/${currency.codein})`;
@@ -10,9 +15,9 @@ function getCurrencyFullName(currencyCode) {
   return currencyCode;
 }
 
-function Table({ expenses }) {
-  const convertValue = (value, exchangeRate) => {
-    return (value * exchangeRate).toFixed(2);
+function Table({ expenses }: TableProps) {
+  const convertValue = (value: string, exchangeRate: number) => {
+    return (parseFloat(value) * exchangeRate).toFixed(2);
   };
 
   return (
@@ -32,9 +37,9 @@ function Table({ expenses }) {
       </thead>
       <tbody>
         {expenses.map((expense) => {
-          const currency = mockData[expense.currency];
+          const currency = mockData[expense.currency as CurrencyCode];
           const exchangeRate = currency ? parseFloat(currency.ask) : 1;
-          const convertedValue = convertValue(parseFloat(expense.value), exchangeRate);
+          const convertedValue = convertValue(expense.value, exchangeRate);
 
           return (
             <tr key={ expense.id }>
@@ -42,7 +47,7 @@ function Table({ expenses }) {
               <td>{expense.tag}</td>
               <td>{expense.method}</td>
               <td>{parseFloat(expense.value).toFixed(2)}</td>
-              <td>{getCurrencyFullName(expense.currency)}</td>
+              <td>{getCurrencyFullName(expense.currency as CurrencyCode)}</td>
               <td>{exchangeRate.toFixed(2)}</td>
               <td>{convertedValue}</td>
               <td>Real</td>
