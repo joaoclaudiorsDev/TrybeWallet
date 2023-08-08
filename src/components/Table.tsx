@@ -1,6 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setDeletExpense } from '../redux/actions';
 import mockData from '../tests/helpers/mockData';
-import { CurrencyData, ExpenseData2 } from '../types';
+import { ExpenseData2 } from '../types';
 
 interface TableProps {
   expenses: ExpenseData2[];
@@ -18,6 +20,15 @@ function getCurrencyFullName(currencyCode: CurrencyCode) {
 function Table({ expenses }: TableProps) {
   const convertValue = (value: string, exchangeRate: number) => {
     return (parseFloat(value) * exchangeRate).toFixed(2);
+  };
+
+  const handleEdit = () => {
+    console.log('plimplim');
+  };
+  const dispatch = useDispatch();
+
+  const handleDelete = (expenseId: number) => {
+    dispatch(setDeletExpense(expenseId));
   };
 
   return (
@@ -52,7 +63,16 @@ function Table({ expenses }: TableProps) {
               <td>{convertedValue}</td>
               <td>Real</td>
               <td>
-                <button> Botão bem massa</button>
+                <button onClick={ handleEdit }> Editar</button>
+                <button
+                  data-testid="delete-btn"
+                  onClick={
+                  () => handleDelete(expense.id)
+                  }
+                >
+                  Excluir
+
+                </button>
               </td>
             </tr>
           );

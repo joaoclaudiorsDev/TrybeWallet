@@ -1,6 +1,12 @@
 import { AnyAction } from 'redux';
 import { UserData, ExpenseData, ExchangeRate } from '../../types';
-import { SET_USER, SET_WALLET, ADD_EXPENSE, SET_EXCHANGE_RATE } from './actionTypes';
+import {
+  SET_USER,
+  SET_WALLET,
+  ADD_EXPENSE,
+  SET_EXCHANGE_RATE,
+  SET_DELETE_EXPENSE,
+} from './actionTypes';
 
 export const setUserData = (userData: UserData) => ({
   type: SET_USER,
@@ -21,3 +27,10 @@ export const setExchangeRate = (exchangeRate: ExchangeRate) => ({
   type: SET_EXCHANGE_RATE,
   payload: exchangeRate,
 });
+
+export const setDeletExpense = (expenseId: number) => {
+  return {
+    type: SET_DELETE_EXPENSE,
+    payload: expenseId,
+  };
+};

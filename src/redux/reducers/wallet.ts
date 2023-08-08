@@ -1,5 +1,9 @@
 import { AnyAction } from 'redux';
-import { ADD_EXPENSE, SET_WALLET, SET_EXCHANGE_RATE } from '../actions/actionTypes';
+import {
+  ADD_EXPENSE,
+  SET_WALLET,
+  SET_EXCHANGE_RATE,
+  SET_DELETE_EXPENSE } from '../actions/actionTypes';
 import { ExpenseData } from '../../types';
 
 const INITIAL_STATE = {
@@ -29,6 +33,12 @@ const walletReducer = (state = INITIAL_STATE, action: AnyAction) => {
       return handleAddExpense(state, action);
     case SET_EXCHANGE_RATE:
       return { ...state, exchangeRate: action.payload };
+    case SET_DELETE_EXPENSE:
+      return {
+        ...state,
+        expenses: state.expenses
+          .filter((expense: ExpenseData) => expense.id !== action.payload),
+      };
     default:
       return state;
   }
