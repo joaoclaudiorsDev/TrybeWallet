@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../redux/actions';
+import './componentsCSS/form.css';
 
 function Form() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ function Form() {
 
   return (
     <form action="" onSubmit={ handleSubmit }>
+      <h1> TrybeWallet</h1>
       <input
         data-testid="email-input"
         placeholder="E-mail"

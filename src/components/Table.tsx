@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setDeletExpense } from '../redux/actions';
 import mockData from '../tests/helpers/mockData';
